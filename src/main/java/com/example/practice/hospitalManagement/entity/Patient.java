@@ -1,5 +1,6 @@
 package com.example.practice.hospitalManagement.entity;
 
+import com.example.practice.hospitalManagement.entity.type.BloodGroupType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -41,4 +42,7 @@ public class Patient {
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;
+
+    @Enumerated(EnumType.STRING)
+    private BloodGroupType bloodGroup;
 }
