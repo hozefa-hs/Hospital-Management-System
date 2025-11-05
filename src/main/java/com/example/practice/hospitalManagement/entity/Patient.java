@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -48,12 +49,13 @@ public class Patient {
     private BloodGroupType bloodGroup;
 
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "patient_insurance_id") //owning side
     private Insurance insurance;
 
 
     @OneToMany(mappedBy = "patient")    //One Patient to Many Appointments
-    private List<Appointment> appointments;
+    @ToString.Exclude
+    private List<Appointment> appointments = new ArrayList<>();
 
 }
