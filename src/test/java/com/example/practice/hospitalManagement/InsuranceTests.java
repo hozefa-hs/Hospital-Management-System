@@ -16,7 +16,7 @@ public class InsuranceTests {
     private InsuranceService insuranceService;
 
     @Test
-    public void testInsurance(){
+    public void testAssignInsuranceToPatient() {
         Insurance insurance = Insurance.builder()
                 .policyNumber("HDFC_123")
                 .provider("HDFC")
@@ -24,6 +24,12 @@ public class InsuranceTests {
                 .build();
 
         Patient patient = insuranceService.assignInsuranceToPatient(insurance, 1L);
+        System.out.println(patient);
+    }
+
+    @Test
+    void testDisAssociateInsuranceFromPatient() {
+        var patient = insuranceService.disAssociateInsuranceFromPatient(1L);
         System.out.println(patient);
     }
 

@@ -49,12 +49,12 @@ public class Patient {
     private BloodGroupType bloodGroup;
 
 
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @OneToOne(cascade = {CascadeType.ALL}, orphanRemoval = true)
     @JoinColumn(name = "patient_insurance_id") //owning side
     private Insurance insurance;
 
 
-    @OneToMany(mappedBy = "patient")    //One Patient to Many Appointments
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.REMOVE)    //One Patient to Many Appointments
     @ToString.Exclude
     private List<Appointment> appointments = new ArrayList<>();
 
